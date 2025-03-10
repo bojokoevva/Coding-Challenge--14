@@ -38,3 +38,20 @@ function addTicket(customerName, issueDescription, priority) {
     // Append the ticket card to the ticket container
     ticketContainer.appendChild(ticketCard);
 }
+
+// Task 3: Converting NodeLists to Arrays for Bulk Updates
+function highlightHighPriorityTickets() {
+    // Get all ticket cards in the container
+    const allTickets = document.querySelectorAll('.ticket-card');
+    
+    // Convert the NodeList to an array and filter for high-priority tickets
+    const highPriorityTickets = Array.from(allTickets).filter(ticket => {
+        const priorityLabel = ticket.querySelector('p').textContent;
+        return priorityLabel.includes('High'); // Check if the priority label contains 'High'
+    });
+    
+    // Loop through all high-priority tickets and apply a style change
+    highPriorityTickets.forEach(ticket => {
+        ticket.style.backgroundColor = '#ffcccb'; // Change background color to light red for visibility
+    });
+}
