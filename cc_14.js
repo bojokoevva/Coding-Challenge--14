@@ -55,3 +55,24 @@ function highlightHighPriorityTickets() {
         ticket.style.backgroundColor = '#ffcccb'; // Change background color to light red for visibility
     });
 }
+
+// Task 4: Implementing Ticket Resolution with Event Bubbling
+function setupTicketResolution() {
+    // Get the ticket container element
+    const ticketContainer = document.getElementById('ticketContainer');
+    
+    // Event listener for the ticket container (Event Bubbling)
+    ticketContainer.addEventListener('click', function(event) {
+        console.log("Ticket container clicked!"); // Log a message when any ticket is clicked
+    });
+    
+    // Get all resolve buttons and add event listeners to them
+    const resolveButtons = document.querySelectorAll('button');
+    resolveButtons.forEach(button => {
+        button.addEventListener('click', function(event) {
+            event.stopPropagation(); // Prevent the click event from bubbling up to the ticket container
+            const ticketCard = button.parentElement; // Get the parent ticket card element
+            ticketCard.remove(); // Remove the ticket card from the container
+        });
+    });
+}
